@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-origin: ["http://localhost:5173", "https://myclinic.com"],    credentials: true,
+origin: ["http://localhost:5173", "https://regenorthocare.netlify.app"],    credentials: true,
   })
 );
 
