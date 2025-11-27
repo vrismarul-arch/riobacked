@@ -13,20 +13,34 @@ const app = express();
 
 connectDB();
 
+// Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+// 🔥 FIXED CORS
 app.use(
   cors({
-origin: ["http://localhost:5173", "https://regenorthocare.netlify.app"],    credentials: true,
+    origin: [
+      "http://localhost:5173",                        // Local Dev
+      "https://regenorthocare.netlify.app",           // Live Frontend
+      "https://riobacked.onrender.com"                // Backend Domain Allowed
+    ],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
 app.get("/", (req, res) => {
-  res.send("API Running");
+  res.send("API Running 🚀");
 });
+
+// Routes
 app.use("/api/cookies", cookieRoutes);
 app.use("/api/leads", leadRoutes);
 app.use("/api/auth", authRoutes);
 
+// Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
