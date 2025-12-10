@@ -24,7 +24,8 @@ app.use(
     origin: [
       "http://localhost:5173",                        // Local Dev
       "https://regenorthocare.netlify.app",           // Live Frontend
-      "https://riobacked.onrender.com"                // Backend Domain Allowed
+      "https://riobacked.onrender.com" ,               // Backend Domain Allowed
+      "https://visit.regenorthocareforms.com"                // Backend Domain Allowed
     ],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -42,5 +43,5 @@ app.use("/api/leads", leadRoutes);
 app.use("/api/auth", authRoutes);
 
 // Server
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5007;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
